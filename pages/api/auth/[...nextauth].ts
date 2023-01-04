@@ -40,6 +40,13 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      }
     }),
     TwitterProvider({
       clientId: process.env.TWITTER_ID,
@@ -59,6 +66,25 @@ export const authOptions: NextAuthOptions = {
       token.userRole = "admin"
       return token
     },
+    async signIn({ user, account, profile, email, credentials }) {
+      console.log(
+        'signing in!'
+      )
+      const isAllowedToSignIn = true
+      if (isAllowedToSignIn) {
+        return true
+      } else {
+        // Return false to display a default error message
+        return false
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }
+    },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      console.log('in redirect callback url is ', url, ' basUrl is ', baseUrl)
+      return url
+    }
   },
 }
 

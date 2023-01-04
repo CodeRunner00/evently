@@ -5,6 +5,7 @@ export default withAuth({
   callbacks: {
     authorized({ req, token }) {
       // `/admin` requires admin role
+      console.log('running middleware for ', req.nextUrl)
       if (req.nextUrl.pathname === "/admin") {
         return token?.userRole === "admin"
       }
