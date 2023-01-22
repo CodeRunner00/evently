@@ -17,18 +17,12 @@ export default async function handler(
     const existingUser = await userModel.findOne({
       email: session?.user?.email,
     });
-    if (!existingUser) {
-      const user = new userModel({ email: signedUser.email, events: [] });
-      try {
-        const myUser = await user.save();
-        res.status(200).send(myUser);
-      } catch (error) {
-        res.status(500).send(error);
-      }
-    }
 
     res.status(200).send(existingUser);
+    return;
   } catch (err) {
     console.log("error finding user.. ", err);
+    res.status(500);
+    return;
   }
 }
