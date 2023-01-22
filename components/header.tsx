@@ -64,29 +64,16 @@ export default function Header() {
           )}
         </p>
       </div>
-      <nav>
+      <div style={{textAlign: 'center' }}>          <h1>Evently</h1></div>
+      <nav style={{marginBottom: '5px' }}>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
             <Link href="/">Home</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/client">Client</Link>
+            <Link href="/my-events">My Events</Link>
           </li>
-          <li className={styles.navItem}>
-            <Link href="/server">Server</Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/protected">Protected</Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/api-example">API</Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/admin">Admin</Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/me">Me</Link>
-          </li>
+      
         </ul>
       </nav>
     </header>

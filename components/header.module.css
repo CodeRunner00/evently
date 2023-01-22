@@ -82,8 +82,10 @@
 
 .navItems {
   margin-bottom: 2rem;
+  font-size: 35px;
   padding: 0;
   list-style: none;
+  text-align: center;
 }
 
 .navItem {

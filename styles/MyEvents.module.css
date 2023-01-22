@@ -1,0 +1,12 @@
+.imageWrapper {
+    height: 340px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 700px) {
+    .imageWrapper {
+      height: 220px;
+    }
+}

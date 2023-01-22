@@ -1,9 +1,11 @@
-import NextAuth, { NextAuthOptions } from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import FacebookProvider from "next-auth/providers/facebook"
-import GithubProvider from "next-auth/providers/github"
-import TwitterProvider from "next-auth/providers/twitter"
-import Auth0Provider from "next-auth/providers/auth0"
+import NextAuth, { NextAuthOptions } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
+import GithubProvider from "next-auth/providers/github";
+import TwitterProvider from "next-auth/providers/twitter";
+import Auth0Provider from "next-auth/providers/auth0";
+const initConnection = require("../../../lib/mongodb");
+const userModel = require("../../../lib/models");
 // import AppleProvider from "next-auth/providers/apple"
 // import EmailProvider from "next-auth/providers/email"
 
@@ -44,9 +46,9 @@ export const authOptions: NextAuthOptions = {
         params: {
           prompt: "consent",
           access_type: "offline",
-          response_type: "code"
-        }
-      }
+          response_type: "code",
+        },
+      },
     }),
     TwitterProvider({
       clientId: process.env.TWITTER_ID,
@@ -63,29 +65,40 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token }) {
-      token.userRole = "admin"
-      return token
+      token.userRole = "admin";
+      return token;
     },
-    async signIn({ user, account, profile, email, credentials }) {
-      console.log(
-        'signing in!'
-      )
-      const isAllowedToSignIn = true
-      if (isAllowedToSignIn) {
-        return true
-      } else {
-        // Return false to display a default error message
-        return false
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized'
+    async signIn({ user: signedUser, account, profile, email, credentials }) {
+      console.log("signing in! ", signedUser);
+      await initConnection();
+
+      try {
+        const existingUser = await userModel.findOne({
+          email: signedUser.email,
+        });
+        console.log("existing user is ", existingUser);
+        if (!existingUser) {
+          const user = new userModel({ email: signedUser.email, events: [] });
+          console.log("user is ", user);
+          try {
+            await user.save();
+          } catch (error) {
+            console.log("error saving user ", error);
+          }
+        }
+        return true;
+      } catch (err) {
+        console.log("error finding user.. ", err);
       }
+
+      return true;
     },
     async redirect({ url, baseUrl }) {
       // Allows relative callback URLs
-      console.log('in redirect callback url is ', url, ' basUrl is ', baseUrl)
-      return url
-    }
+      console.log("in redirect callback url is ", url, " basUrl is ", baseUrl);
+      return url;
+    },
   },
-}
+};
 
-export default NextAuth(authOptions)
+export default NextAuth(authOptions);
