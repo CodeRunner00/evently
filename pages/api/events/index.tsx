@@ -13,7 +13,6 @@ export default async function handler(
   // console.log('geoHash is', geoHash)
 
   const { zip, radius, page = 0 } = req.query;
-  console.log('query params zip ', zip, ' and radius ', radius)
   const locationInfo = await axios.get(`https://thezipcodes.com/api/v1/search?zipCode=${zip}&countryCode=US&apiKey=fc6722a6fb8af205861e703da4531654`)
   // console.log('locationInfo ', locationInfo)
   const { latitude: lat, longitude: long } = locationInfo?.data?.location?.[0]
