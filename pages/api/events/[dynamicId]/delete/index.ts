@@ -15,7 +15,7 @@ export default async function handler(
   // const geoJson = point.toGeoJSON();
   // console.log('getJson ', geoJson)
   // console.log('geoHash is', geoHash)
-  console.log("req.params ", req.query);
+
   const { dynamicId } = req.query;
   const session = await unstable_getServerSession(req, res, authOptions);
   if (!session) res.status(404).send({ error: "Not authorized" });
@@ -32,7 +32,7 @@ export default async function handler(
     }
 
     const filteredEvents = existingUser.events.filter(
-      ({ eventId }): Boolean => eventId !== dynamicId
+      ({ eventId }: { eventId: string }): Boolean => eventId !== dynamicId
     );
 
     existingUser.events = filteredEvents;
