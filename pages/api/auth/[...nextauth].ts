@@ -54,7 +54,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.TWITTER_SECRET,
     }),
   ],
-  secret: process.env.NEXT_PUBLIC_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   theme: {
     colorScheme: "light",
   },
