@@ -2,8 +2,8 @@ import React, { useState, useRef, useContext, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Audio } from "react-loader-spinner";
-import { unstable_getServerSession } from "next-auth/next";
-import { authOptions } from "./api/auth/[...nextauth]";
+// import { unstable_getServerSession } from "next-auth/next";
+// import { authOptions } from "./api/auth/[...nextauth]";
 import { Card, Col, Row, Text } from "@nextui-org/react";
 import axios from "axios";
 import Layout from "../components/layout";
@@ -13,7 +13,7 @@ import styles from "../styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home(props) {
+export default function Home(props = { events: [] }) {
   console.log("homepage props ", props);
   const [existingEventIds, setExistingEventIds] = useState(
     props.events.map(({ eventId }) => eventId)
@@ -387,6 +387,7 @@ export async function getServerSideProps(context) {
   // const userEvents = await axios.get(
   //   `http://localhost:3000/api/events/user/${session?.user.email}`
   // );
+  // await Promise.resolve();
   // pass the email to grab all of the events for the current user or an empty array if not logged in
   return {
     props: {
