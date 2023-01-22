@@ -26,7 +26,7 @@ const uri = `mongodb+srv://efor202:Coolio%401423@cluster0.teyvbej.mongodb.net/?r
 
 // export default db
 
-module.exports = function () {
+export default function () {
   return new Promise((res, rej) => {
     mongoose.connect(uri);
     const db = mongoose.connection;
@@ -42,4 +42,4 @@ module.exports = function () {
       return res(true);
     });
   });
-};
+}
