@@ -1,4 +1,5 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
+import { server } from "../../../config";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
@@ -13,7 +14,7 @@ import userModel from "../../../lib/models";
 // const logger = new Amplify.Logger("EventlyNexAuthLogger");
 
 // logger.info(`NextAuth env variable ${process.env.NEXTAUTH_URL}`);
-
+console.log("server is ", server);
 export const authOptions: NextAuthOptions = {
   // https://next-auth.js.org/configuration/providers/oauth
   providers: [
@@ -35,16 +36,16 @@ export const authOptions: NextAuthOptions = {
     }),
     */
     FacebookProvider({
-      clientId: process.env.FACEBOOK_ID,
-      clientSecret: process.env.FACEBOOK_SECRET,
+      clientId: server.FACEBOOK_ID,
+      clientSecret: server.FACEBOOK_SECRET,
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: server.GITHUB_ID,
+      clientSecret: server.GITHUB_SECRET,
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: server.GOOGLE_ID,
+      clientSecret: server.GOOGLE_SECRET,
       authorization: {
         params: {
           prompt: "consent",
@@ -54,11 +55,11 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     TwitterProvider({
-      clientId: process.env.TWITTER_ID,
-      clientSecret: process.env.TWITTER_SECRET,
+      clientId: server.TWITTER_ID,
+      clientSecret: server.TWITTER_SECRET,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: server.NEXTAUTH_SECRET,
   theme: {
     colorScheme: "light",
   },
