@@ -6,13 +6,12 @@ module.exports = {
   serverRuntimeConfig: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-    FACEBOOK_ID: process.env.FACEBOOK_ID,
-    FACEBOOK_SECRET: process.env.FACEBOOK_SECRET,
     GITHUB_ID: process.env.GITHUB_ID,
     GITHUB_SECRET: process.env.GITHUB_SECRET,
     GOOGLE_ID: process.env.GOOGLE_ID,
     GOOGLE_SECRET: process.env.GOOGLE_SECRET,
-    TWITTER_ID: process.env.TWITTER_ID,
-    TWITTER_SECRET: process.env.TWITTER_SECRET,
+    AUTH0_ID: process.env.AUTH0_ID,
+    AUTHO_SECRET: process.env.AUTH0_SECRET,
+    AUTH0_ISSUER: process.env.AUTH0_ISSUER,
   },
 };

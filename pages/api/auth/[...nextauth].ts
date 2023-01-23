@@ -4,6 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
 import TwitterProvider from "next-auth/providers/twitter";
+import Auth0Provider from "next-auth/providers/auth0";
 import initConnection from "../../../lib/mongodb";
 import userModel from "../../../lib/models";
 // import AppleProvider from "next-auth/providers/apple"
@@ -38,14 +39,6 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     */
-    FacebookProvider({
-      clientId: server.FACEBOOK_ID,
-      clientSecret: server.FACEBOOK_SECRET,
-    }),
-    GithubProvider({
-      clientId: server.GITHUB_ID,
-      clientSecret: server.GITHUB_SECRET,
-    }),
     GoogleProvider({
       clientId: server.GOOGLE_ID,
       clientSecret: server.GOOGLE_SECRET,
@@ -57,9 +50,14 @@ export const authOptions: NextAuthOptions = {
         },
       },
     }),
-    TwitterProvider({
-      clientId: server.TWITTER_ID,
-      clientSecret: server.TWITTER_SECRET,
+    Auth0Provider({
+      clientId: server.AUTH0_ID,
+      clientSecret: server.AUTHO_SECRET,
+      issuer: server.AUTH0_ISSUER,
+    }),
+    GithubProvider({
+      clientId: server.GITHUB_ID,
+      clientSecret: server.GITHUB_SECRET,
     }),
   ],
   secret: server.NEXTAUTH_SECRET,
