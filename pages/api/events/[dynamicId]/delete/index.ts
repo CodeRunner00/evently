@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "../../../auth/[...nextauth]";
 import type { NextApiRequest, NextApiResponse } from "next";
-const initConnection = require("../../../../../lib/mongodb");
-const userModel = require("../../../../../lib/models");
+import initConnection from "../../../../../lib/mongodb";
+import userModel from "../../../../../lib/models";
 
 export default async function handler(
   req: NextApiRequest,
@@ -25,7 +25,6 @@ export default async function handler(
     const existingUser = await userModel.findOne({
       email: session?.user?.email,
     });
-    console.log("existing user in my-events ", existingUser);
     if (!existingUser) {
       res.status(400);
       return;
