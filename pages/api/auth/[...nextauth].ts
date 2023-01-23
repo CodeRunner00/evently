@@ -73,25 +73,25 @@ export const authOptions: NextAuthOptions = {
     },
     async signIn({ user: signedUser, account, profile, email, credentials }) {
       console.log("signing in! ", signedUser);
-      await initConnection();
+      // await initConnection();
 
-      try {
-        const existingUser = await userModel.findOne({
-          email: signedUser.email,
-        });
-        console.log("existing user is ", existingUser);
-        if (!existingUser) {
-          const user = new userModel({ email: signedUser.email, events: [] });
-          try {
-            await user.save();
-          } catch (error) {
-            console.log("error saving user ", error);
-          }
-        }
-        return true;
-      } catch (err) {
-        console.log("error finding user.. ", err);
-      }
+      // try {
+      //   const existingUser = await userModel.findOne({
+      //     email: signedUser.email,
+      //   });
+      //   console.log("existing user is ", existingUser);
+      //   if (!existingUser) {
+      //     const user = new userModel({ email: signedUser.email, events: [] });
+      //     try {
+      //       await user.save();
+      //     } catch (error) {
+      //       console.log("error saving user ", error);
+      //     }
+      //   }
+      //   return true;
+      // } catch (err) {
+      //   console.log("error finding user.. ", err);
+      // }
 
       return true;
     },
