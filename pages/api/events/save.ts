@@ -24,7 +24,6 @@ export default async function handler(
     const existingUser = await userModel.findOne({
       email: session?.user?.email,
     });
-    console.log("existing user in my-events ", existingUser);
     if (!existingUser) {
       res.status(400).send({ email: session?.user?.email });
       return;
@@ -41,7 +40,6 @@ export default async function handler(
       try {
         existingUser.events.push(body);
         await existingUser.save();
-        console.log("existingUser saved is ", existingUser);
         return res.send(existingUser);
       } catch (error) {
         return res.status(500).send(error);

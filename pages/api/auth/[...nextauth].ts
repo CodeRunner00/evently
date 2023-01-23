@@ -82,7 +82,6 @@ export const authOptions: NextAuthOptions = {
         console.log("existing user is ", existingUser);
         if (!existingUser) {
           const user = new userModel({ email: signedUser.email, events: [] });
-          console.log("user is ", user);
           try {
             await user.save();
           } catch (error) {
