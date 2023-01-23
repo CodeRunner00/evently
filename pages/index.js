@@ -378,20 +378,20 @@ export default function Home(props = { events: [] }) {
 }
 
 export async function getServerSideProps(context) {
-  // const session = await unstable_getServerSession(
-  //   context.req,
-  //   context.res,
-  //   authOptions
-  // );
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
 
-  // const userEvents = await axios.get(
-  //   `http://localhost:3000/api/events/user/${session?.user.email}`
-  // );
-  // await Promise.resolve();
+  const userEvents = await axios.get(
+    `http://localhost:3000/api/events/user/${session?.user.email}`
+  );
+  await Promise.resolve();
   // pass the email to grab all of the events for the current user or an empty array if not logged in
   return {
     props: {
-      events: [],
+      events: userEvents,
     },
   };
 }
