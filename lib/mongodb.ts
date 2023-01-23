@@ -27,8 +27,8 @@ const uri = `mongodb+srv://efor202:Coolio%401423@cluster0.teyvbej.mongodb.net/?r
 // export default db
 
 export default function () {
-  return new Promise((res, rej) => {
-    mongoose.connect(uri);
+  return new Promise(async (res, rej) => {
+    await mongoose.connect(uri);
     const db = mongoose.connection;
     if (mongoose.connection.readyState == 1) res(true);
     console.log("db is ", db);
