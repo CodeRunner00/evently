@@ -1,4 +1,5 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
+import Amplify from "aws-amplify";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
@@ -10,6 +11,10 @@ import userModel from "../../../lib/models";
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
+// const logger = new Amplify.Logger("EventlyNexAuthLogger");
+
+// logger.info(`NextAuth env variable ${process.env.NEXTAUTH_URL}`);
+
 export const authOptions: NextAuthOptions = {
   // https://next-auth.js.org/configuration/providers/oauth
   providers: [
