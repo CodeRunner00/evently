@@ -1,9 +1,8 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import { Audio } from "react-loader-spinner";
-// import { unstable_getServerSession } from "next-auth/next";
-// import { authOptions } from "./api/auth/[...nextauth]";
+import { unstable_getServerSession } from "next-auth/next";
+import { authOptions } from "./api/auth/[...nextauth]";
 import { Card, Col, Row, Text } from "@nextui-org/react";
 import axios from "axios";
 import Layout from "../components/layout";
@@ -391,7 +390,7 @@ export async function getServerSideProps(context) {
   // pass the email to grab all of the events for the current user or an empty array if not logged in
   return {
     props: {
-      events: userEvents,
+      events: userEvents.data.events,
     },
   };
 }
