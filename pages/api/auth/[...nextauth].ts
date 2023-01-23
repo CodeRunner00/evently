@@ -1,9 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import { server } from "../../../config";
 import GoogleProvider from "next-auth/providers/google";
-import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
-import TwitterProvider from "next-auth/providers/twitter";
 import Auth0Provider from "next-auth/providers/auth0";
 import initConnection from "../../../lib/mongodb";
 import userModel from "../../../lib/models";
@@ -52,7 +50,7 @@ export const authOptions: NextAuthOptions = {
     }),
     Auth0Provider({
       clientId: server.AUTH0_ID,
-      clientSecret: server.AUTHO_SECRET,
+      clientSecret: server.AUTH0_SECRET,
       issuer: server.AUTH0_ISSUER,
     }),
     GithubProvider({

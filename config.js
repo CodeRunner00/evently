@@ -11,6 +11,6 @@ export const server = {
   GOOGLE_ID: serverRuntimeConfig.GOOGLE_ID,
   GOOGLE_SECRET: serverRuntimeConfig.GOOGLE_SECRET,
   AUTH0_ID: serverRuntimeConfig.AUTH0_ID,
-  AUTHO_SECRET: serverRuntimeConfig.AUTHO_SECRET,
+  AUTH0_SECRET: serverRuntimeConfig.AUTH0_SECRET,
   AUTH0_ISSUER: serverRuntimeConfig.AUTH0_ISSUER,
 };
