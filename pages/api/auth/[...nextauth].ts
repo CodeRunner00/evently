@@ -15,6 +15,7 @@ import userModel from "../../../lib/models";
 
 // logger.info(`NextAuth env variable ${process.env.NEXTAUTH_URL}`);
 console.log("server is ", server);
+console.log("process.env.NEXTAUTH_URL is ", process.env.NEXTAUTH_URL);
 export const authOptions: NextAuthOptions = {
   // https://next-auth.js.org/configuration/providers/oauth
   providers: [
